@@ -24,9 +24,12 @@ def fillin_PDans(QD_path:str,ans:dict):
 
 if __name__ == "__main__":
     """ Fill in """
-    DRandIP = {"dr":"dr1","last_ip":"11"}
+    DRandIP = {"dr":"dr3","last_ip":"13"}
     PDans = {
-        "q0":{"dressF_Hz":5.76761e9,"dressP":0.2,"bareF_Hz":5.76e9,"ro_atte":50},
+    #   "q0":{"dressF_Hz":5.90987e9,"dressP":0.3,"bareF_Hz":5.90593e9,"ro_atte":40},
+    #   "q1":{"dressF_Hz":6.01316e9,"dressP":0.6,"bareF_Hz":6.00985e9,"ro_atte":44},
+    #   "q2":{"dressF_Hz":5.86154e9,"dressP":0.3,"bareF_Hz":5.85791e9,"ro_atte":40},
+        "q3":{"dressF_Hz":6.03994e9,"dressP":0.6,"bareF_Hz":6.03622e9,"ro_atte":50},
     }
     
     

@@ -13,7 +13,7 @@ from quantify_core.measurement.control import MeasurementControl
 from Modularize.support import init_meas, init_system_atte, shut_down, QRM_nco_init
 from Modularize.support.Pulse_schedule_library import One_tone_sche, pulse_preview
 from quantify_core.analysis.spectroscopy_analysis import ResonatorSpectroscopyAnalysis
-
+# from Chip_Data_Store import 
 
 def Cavity_spec(QD_agent:QDmanager,meas_ctrl:MeasurementControl,ro_bare_guess:dict,ro_span_Hz:int=15e6,n_avg:int=300,points:int=200,run:bool=True,q:str='q1',Experi_info:dict={},ro_amp:float=0)->dict:
     """
@@ -110,13 +110,20 @@ if __name__ == "__main__":
     chip_info_restore = 0
     init_RO_DigiAtte = 26
     real_atte_ro = 0
-    # guess [5.72088012 5.83476623 5.90590196 6.01276471 6.1014995 ] @DR2 
+    # guess [5.8576 5.9056 5.947  6.0092  6.03549] @DR2 
+    #ro_bare=dict(
+    #    q0=5.72231e9,
+    #    q1=6.014085e9,
+    #    q2=5.835977e9,
+    #    q3=6.102536e9,
+    #    q4=5.9086e9        
+    #)
     ro_bare=dict(
-        q0=5.72231e9,
-        q1=6.014085e9,
-        q2=5.835977e9,
-        q3=6.102536e9,
-        q4=5.9086e9        
+        q0=5.9056e9,
+        q1=6.0092e9,
+        q2=5.8576e9,
+        q3=6.03549e9,
+        q4=5.947e9        
     )
     #q1 or q3 = 5.8175e9,
     # q? = 6.207e9,
@@ -125,13 +132,14 @@ if __name__ == "__main__":
     # Create or Load chip information
     # chip_info = cds.Chip_file()
     # Reload the QuantumDevice or build up a new one
-    QD_path, dr, ip, mode, vpn = '','dr2','192.168.1.10','n',False #uw.init_meas_window()
+    QD_path, dr, ip, mode, vpn = '','dr3','192.168.1.13','n',False #uw.init_meas_window()
     QD_agent, cluster, meas_ctrl, ic, Fctrl = init_meas(QuantumDevice_path=QD_path,
                                                         dr_loc=dr,
                                                         cluster_ip=ip,
                                                         mode=mode,
                                                         vpn=vpn,
-                                                        qubit_number=5)
+                                                        qubit_number=9
+                                                        )
     # Set the system attenuations
     init_system_atte(QD_agent.quantum_device,list(Fctrl.keys()),ro_out_att=init_RO_DigiAtte)
     
@@ -151,9 +159,8 @@ if __name__ == "__main__":
         
         # Chip info!
         if chip_info_restore:
-            chip_info.update_Cavity_spec_bare(result=CS_results)
+            Chip_Data_Store.update_Cavity_spec_bare(result=CS_results)
 
     """ Close """
     shut_down(cluster,Fctrl)
     
-

@@ -1,5 +1,5 @@
 import os, sys
-sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', '..'))
+sys.path.append(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
 from xarray import Dataset
 from numpy import array, linspace
 from qblox_instruments import Cluster
@@ -115,7 +115,7 @@ if __name__ == '__main__':
     """ Fill in """
     execute = True
     repaet = 1
-    DRandIP = {"dr":"dr1","last_ip":"11"}
+    DRandIP = {"dr":"dr3","last_ip":"13"}
     ro_elements = {'q0':{"roAmp_factor":1}}
     
 

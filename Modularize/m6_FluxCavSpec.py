@@ -90,6 +90,7 @@ def update_flux_info_in_results_for(QD_agent:QDmanager,qb:str,FD_results:dict):
         phi=FD_results[qb].quantities_of_interest["shift"].nominal_value,
         offset=FD_results[qb].quantities_of_interest["offset"].nominal_value
     )
+    
 
 
 def fluxCavity_executor(QD_agent:QDmanager,meas_ctrl:MeasurementControl,specific_qubits:str,run:bool=True,flux_span:float=0.4,ro_span_Hz=3e6,zpts=20,fpts=30):
@@ -109,8 +110,9 @@ if __name__ == "__main__":
     
     """ Fill in """
     execution = True
-    DRandIP = {"dr":"dr1","last_ip":"11"}
-    ro_elements = ['q0']
+    DRandIP = {"dr":"dr3","last_ip":"13"}
+    #ro_elements = ['q2']
+    ro_elements = ['q3']
     
 
     """ Preparations """
@@ -120,16 +122,23 @@ if __name__ == "__main__":
         ro_elements = list(Fctrl.keys())
 
     """ Running """
+    Fctrl["q7"](0.2)
+    Fctrl["q8"](0.1)
     update = False
     FD_results = {}
     for qubit in ro_elements:
         init_system_atte(QD_agent.quantum_device,list([qubit]),ro_out_att=QD_agent.Notewriter.get_DigiAtteFor(qubit,'ro'))
-        FD_results[qubit] = fluxCavity_executor(QD_agent,meas_ctrl,qubit,run=execution,flux_span=0.15,ro_span_Hz=6e6, zpts=30)
+        FD_results[qubit] = fluxCavity_executor(QD_agent,meas_ctrl,qubit,run=execution,flux_span=1,ro_span_Hz=6e6, zpts=30)
         cluster.reset()
         if execution:
             permission = input("Update the QD with this result ? [y/n]") 
             if permission.lower() in ['y','yes']:
                 update_flux_info_in_results_for(QD_agent,qubit,FD_results)
+                qb=qubit
+                bias=FD_results[qb].quantities_of_interest["offset_0"].nominal_value
+                period=2*pi/FD_results[qb].quantities_of_interest["frequency"].nominal_value
+                print(bias)
+                print(period)
                 update = True
         else:
             break

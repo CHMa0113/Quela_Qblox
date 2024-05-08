@@ -154,11 +154,17 @@ if __name__ == "__main__":
     execution = True
     update = True
     #
-    DRandIP = {"dr":"dr1","last_ip":"11"}
+    DRandIP = {"dr":"dr3","last_ip":"13"}
     #
     ro_elements = {
-        "q0":{"xyf_guess":[5.3e9],"xyl_guess":[0.02],"g_guess":0, "tune_bias":0} # g you can try a single value in  [42e6, 54e6, 62e6], higher g makes fq lower.
-    }                                                                            # tune_bias is the voltage away from sweet spot. If it was given, here will calculate a ROF according to that z-bias and store it in Notebook.
+    #   "q1":{"xyf_guess":[0e9],"xyl_guess":[0],"g_guess":60e6, "tune_bias":0} # g you can try a single value in  [42e6, 54e6, 62e6], higher g makes fq lower.
+    #   "q0":{"xyf_guess":[4.6e9],"xyl_guess":[0.02],"g_guess":60e6, "tune_bias":0} # g you can try a single value in  [42e6, 54e6, 62e6], higher g makes fq lower.
+    #   If the xyf_guess is 3.8e9, add input xyf_guess as 4e9.
+    #   Try many different xyl_guess, and find out the relative better value. The following example is 0.04. Now, try it again.
+    #    "q1":{"xyf_guess":[4.0e9],"xyl_guess":[0.08],"g_guess":60e6, "tune_bias":0} # g you can try a single value in  [42e6, 54e6, 62e6], higher g makes fq lower.
+    #   "q1":{"xyf_guess":[4e9],"xyl_guess":[0.04],"g_guess":60e6, "tune_bias":0} # g you can try a single value in  [42e6, 54e6, 62e6], higher g makes fq lower.
+        "q2":{"xyf_guess":[4.7e9],"xyl_guess":[0.12,0.12,0.12],"g_guess":54e6, "tune_bias":0}
+    }# tune_bias is the voltage away from sweet spot. If it was given, here will calculate a ROF according to that z-bias and store it in Notebook.
 
 
 

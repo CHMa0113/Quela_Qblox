@@ -103,9 +103,10 @@ if __name__ == "__main__":
     """ fill in """
     execution = True
     sweetSpot_dispersive = True
-    DRandIP = {"dr":"dr1","last_ip":"11"}
+    DRandIP = {"dr":"dr3","last_ip":"13"}
     ro_elements = {    # measurement target q from this dict 
-        "q0": {"ro_atte":50}
+    #   "q2": {"ro_atte":40}
+        "q3": {"ro_atte":30}
     }
 
     """ preparations """
