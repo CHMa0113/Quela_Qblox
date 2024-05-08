@@ -122,8 +122,8 @@ if __name__ == "__main__":
         ro_elements = list(Fctrl.keys())
 
     """ Running """
-    Fctrl["q7"](0.2)
-    Fctrl["q8"](0.1)
+    Fctrl["q7"](0.1)
+    Fctrl["q8"](0.3)
     update = False
     FD_results = {}
     for qubit in ro_elements:
